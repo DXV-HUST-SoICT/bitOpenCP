@@ -2,7 +2,7 @@ package core;
 
 public abstract class ValueEntity<T> extends BasicEntity
     implements IValueEntity<T> {
-    T value;
+    protected T value;
 
     @Override
     public T getValue() {
