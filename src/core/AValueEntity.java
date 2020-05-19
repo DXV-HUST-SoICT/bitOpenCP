@@ -1,7 +1,12 @@
 package core;
 
-public abstract class ValueEntity<T> extends BasicEntity
+/***
+ * Implements core methods of IValueEntity
+ * @param <T> Value type
+ */
+public abstract class AValueEntity<T> extends ABasicEntity
     implements IValueEntity<T> {
+
     protected T value;
 
     @Override

@@ -1,8 +1,8 @@
 package constraintprogramming.constraintmodel.core.datatype;
 
-import core.ValueEntity;
+import core.AValueEntity;
 
-public abstract class AValueEntityCP<T> extends ValueEntity<T>
+public abstract class AValueEntityCP<T> extends AValueEntity<T>
         implements IValueEntityCP<T> {
 
 }
