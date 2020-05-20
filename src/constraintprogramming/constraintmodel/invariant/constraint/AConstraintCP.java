@@ -1,11 +1,15 @@
 package constraintprogramming.constraintmodel.invariant.constraint;
 
-import constraintprogramming.constraintmodel.core.datatype.Satisfaction;
+import constraintprogramming.constraintmodel.core.datatype.ESatisfaction;
 import constraintprogramming.constraintmodel.invariant.AInvariantCP;
 
-public abstract class AConstraintCP extends AInvariantCP<Satisfaction>
+public abstract class AConstraintCP extends AInvariantCP<ESatisfaction>
         implements IConstraintCP {
-    public Satisfaction isSastified() {
-        return this.getValue();
+
+    ESatisfaction value;
+
+    @Override
+    public ESatisfaction isSatisfied() {
+        return value;
     }
 }

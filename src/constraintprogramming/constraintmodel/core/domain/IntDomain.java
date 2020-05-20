@@ -6,19 +6,18 @@ import java.util.*;
 
 public class IntDomain extends ADomain<Integer> implements IDomain<Integer> {
 
-    private ArrayList<Integer> domain_;
+    private HashSet<Integer> domain_;
 
     public IntDomain(Integer min_, Integer max_) {
-        domain_ = new ArrayList<>();
+        domain_ = new HashSet<>();
         for (int i = min_; i < max_; i++) {
             domain_.add(i);
         }
     }
 
     public IntDomain(Collection<Integer> domain_) {
-        this.domain_ = new ArrayList<>();
+        this.domain_ = new HashSet<>();
         this.domain_.addAll(domain_);
-        Collections.sort(this.domain_);
     }
 
     @Override
@@ -32,25 +31,51 @@ public class IntDomain extends ADomain<Integer> implements IDomain<Integer> {
     }
 
     @Override
-    public Collection<Integer> domain() {
+    public Collection<Integer> getDomain() {
         return domain_;
     }
 
     @Override
     public Integer nextValue(Integer value) {
-        int idx = BinarySearch.search(domain_, value);
-        if (idx < domain_.size() - 1) {
-            return domain_.get(idx + 1);
+        ArrayList<Integer> domain = new ArrayList<>();
+        domain.addAll(domain_);
+        Collections.sort(domain);
+        int idx = BinarySearch.search(domain, value);
+        if (idx < domain.size() - 1) {
+            return domain.get(idx + 1);
         }
         return null;
     }
 
     @Override
     public Integer prevValue(Integer value) {
-        int idx = BinarySearch.search(domain_, value);
-        if ((idx < domain_.size()) && (idx > 0)) {
-            return domain_.get(idx - 1);
+        ArrayList<Integer> domain = new ArrayList<>();
+        domain.addAll(domain_);
+        Collections.sort(domain);
+        int idx = BinarySearch.search(domain, value);
+        if ((idx < domain.size()) && (idx > 0)) {
+            return domain.get(idx - 1);
         }
         return null;
+    }
+
+    @Override
+    public void add(Integer value) {
+        domain_.add(value);
+    }
+
+    @Override
+    public void add(IDomain<Integer> domain) {
+        domain_.addAll(domain.getDomain());
+    }
+
+    @Override
+    public void remove(Integer value) {
+        domain_.remove(value);
+    }
+
+    @Override
+    public void remove(IDomain<Integer> domain) {
+        domain_.removeAll(domain.getDomain());
     }
 }

@@ -30,4 +30,9 @@ public class FunctionAdd extends AFunctionCP
         }
         this.domain_ = new IntDomain(domain);
     }
+
+    @Override
+    public void prune() {
+
+    }
 }

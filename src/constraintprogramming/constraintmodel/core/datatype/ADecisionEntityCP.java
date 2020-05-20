@@ -4,8 +4,15 @@ import constraintprogramming.constraintmodel.core.domain.IDomain;
 
 import java.util.Collection;
 
-public class ADecisionEntityCP<T> extends AValueEntityCP<T>
+/***
+ * Model's factors can change value
+ * @param <T>
+ */
+public abstract class ADecisionEntityCP<T> extends AValueEntityCP<T>
     implements IDecisionEntityCP<T> {
+    /***
+     * Domain of value (i.e. all of values that entity can be assigned)
+     */
     protected IDomain<T> domain_;
 
     @Override
@@ -15,6 +22,6 @@ public class ADecisionEntityCP<T> extends AValueEntityCP<T>
 
     @Override
     public Collection<T> getDomain() {
-        return domain_.domain();
+        return domain_.getDomain();
     }
 }
