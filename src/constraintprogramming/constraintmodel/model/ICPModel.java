@@ -1,6 +1,7 @@
 package constraintprogramming.constraintmodel.model;
 
 import constraintprogramming.constraintmodel.core.datatype.EModelState;
+import constraintprogramming.constraintmodel.invariant.constraint.IConstraintCP;
 import constraintprogramming.propagationengine.IPropagationEngineCP;
 import constraintprogramming.searchengine.metasearchengine.IMetaSearchEngine;
 
@@ -8,7 +9,7 @@ import constraintprogramming.searchengine.metasearchengine.IMetaSearchEngine;
  * contains all of constraints that must be satisfied
  * (has value of YES with solution)
  */
-public interface IModel {
+public interface ICPModel {
     /***
      * re-open model to modifying
      */
@@ -22,7 +23,7 @@ public interface IModel {
     /***
      * add new constraint (and all related ValueEntity, of course) to model
      */
-    public void post();
+    public void post(IConstraintCP c);
 
     /***
      * get model's current state (i.e. OPEN or CLOSE)

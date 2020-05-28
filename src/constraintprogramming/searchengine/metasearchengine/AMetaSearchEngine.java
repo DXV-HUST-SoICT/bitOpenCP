@@ -1,4 +1,4 @@
 package constraintprogramming.searchengine.metasearchengine;
 
-public class AMetaSearchEngine implements IMetaSearchEngine {
+public abstract class AMetaSearchEngine implements IMetaSearchEngine {
 }

@@ -6,10 +6,9 @@ import java.util.*;
 
 public class IntDomain extends ADomain<Integer> implements IDomain<Integer> {
 
-    private HashSet<Integer> domain_;
+    private HashSet<Integer> domain_ = new HashSet<>();
 
     public IntDomain(Integer min_, Integer max_) {
-        domain_ = new HashSet<>();
         for (int i = min_; i < max_; i++) {
             domain_.add(i);
         }

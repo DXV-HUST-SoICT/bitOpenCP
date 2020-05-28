@@ -1,5 +1,7 @@
 package constraintprogramming.constraintmodel.core.datatype;
 
+import constraintprogramming.constraintmodel.core.domain.IDomain;
+
 import java.util.Collection;
 
 /***
@@ -19,6 +21,8 @@ public interface IDecisionEntityCP<T> extends IValueEntityCP<T> {
      * @return
      */
     public Collection<T> getDomain();
+
+    public void setDomain(IDomain<T> domain);
 
     /***
      * Prune values constraint can be assigned

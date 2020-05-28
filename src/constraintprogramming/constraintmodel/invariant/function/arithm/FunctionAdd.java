@@ -2,16 +2,19 @@ package constraintprogramming.constraintmodel.invariant.function.arithm;
 
 import constraintprogramming.constraintmodel.core.datatype.IDecisionEntityCP;
 import constraintprogramming.constraintmodel.core.datatype.IValueEntityCP;
+import constraintprogramming.constraintmodel.core.domain.IDomain;
 import constraintprogramming.constraintmodel.core.domain.IntDomain;
 import constraintprogramming.constraintmodel.invariant.function.AFunctionCP;
 import constraintprogramming.constraintmodel.invariant.function.IFunctionCP;
+import constraintprogramming.constraintmodel.variable.IntVarCP;
+import constraintprogramming.propagationengine.IAC3Pruning;
+import core.IValueEntity;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 
 public class FunctionAdd extends AFunctionCP
-    implements IFunctionCP {
+    implements IFunctionCP, IAC3Pruning {
 
     private IValueEntityCP e1;
     private IValueEntityCP e2;
@@ -32,7 +35,30 @@ public class FunctionAdd extends AFunctionCP
     }
 
     @Override
+    public void setDomain(IDomain domain) {
+
+    }
+
+    @Override
     public void prune() {
 
+    }
+
+    @Override
+    public HashSet<HashSet<IValueEntityCP>> getArcRelationship() {
+        HashSet<HashSet<IValueEntityCP>> arcRelationship = new HashSet<>();
+        HashSet<IValueEntityCP> a = new HashSet<>();
+        a.add(e1);
+        a.add(e2);
+        arcRelationship.add(a);
+        return arcRelationship;
+    }
+
+    @Override
+    public HashSet<IValueEntityCP> getAffectValueEntity() {
+        HashSet<IValueEntityCP> affectVE = new HashSet<>();
+        affectVE.add(e1);
+        affectVE.add(e2);
+        return affectVE;
     }
 }

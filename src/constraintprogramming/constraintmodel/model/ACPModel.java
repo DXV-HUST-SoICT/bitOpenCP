@@ -2,7 +2,7 @@ package constraintprogramming.constraintmodel.model;
 
 import constraintprogramming.constraintmodel.core.datatype.EModelState;
 
-public abstract class AModel implements IModel {
+public abstract class ACPModel implements ICPModel {
     protected EModelState state_;
     @Override
     public void open() {
