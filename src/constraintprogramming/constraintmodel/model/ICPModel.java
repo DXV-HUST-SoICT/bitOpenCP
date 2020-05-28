@@ -1,6 +1,8 @@
 package constraintprogramming.constraintmodel.model;
 
 import constraintprogramming.constraintmodel.core.datatype.EModelState;
+import constraintprogramming.propagationengine.IPropagationEngineCP;
+import constraintprogramming.searchengine.metasearchengine.IMetaSearchEngine;
 
 /***
  * contains all of constraints that must be satisfied
@@ -27,4 +29,16 @@ public interface IModel {
      * @return model's current state
      */
     public EModelState getState();
+
+    /***
+     * Link this model with IMetaSearchEngine se
+     * @param se
+     */
+    public void setMetaSearchEngine(IMetaSearchEngine se);
+
+    /***
+     * Link this model with IPropagationEngineCP pe
+     * @param pe
+     */
+    public void setPropagationEngine(IPropagationEngineCP pe);
 }
