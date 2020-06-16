@@ -9,5 +9,5 @@ import java.util.HashSet;
  * @param <T>
  */
 public interface IValueEntityCP<T> extends IValueEntity<T> {
-    public HashSet<IValueEntityCP> getAffectValueEntity();
+    public HashSet<IValueEntityCP> getAffectingValueEntities();
 }

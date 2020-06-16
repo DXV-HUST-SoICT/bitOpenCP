@@ -6,9 +6,7 @@ import constraintprogramming.constraintmodel.core.domain.IDomain;
 import constraintprogramming.constraintmodel.core.domain.IntDomain;
 import constraintprogramming.constraintmodel.invariant.function.AFunctionCP;
 import constraintprogramming.constraintmodel.invariant.function.IFunctionCP;
-import constraintprogramming.constraintmodel.variable.IntVarCP;
 import constraintprogramming.propagationengine.IAC3Pruning;
-import core.IValueEntity;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -40,7 +38,7 @@ public class FunctionAdd extends AFunctionCP
     }
 
     @Override
-    public void prune() {
+    public int selfPruning() {
 
     }
 
@@ -55,7 +53,7 @@ public class FunctionAdd extends AFunctionCP
     }
 
     @Override
-    public HashSet<IValueEntityCP> getAffectValueEntity() {
+    public HashSet<IValueEntityCP> getAffectingValueEntities() {
         HashSet<IValueEntityCP> affectVE = new HashSet<>();
         affectVE.add(e1);
         affectVE.add(e2);

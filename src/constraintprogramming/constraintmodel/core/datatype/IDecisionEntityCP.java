@@ -25,7 +25,8 @@ public interface IDecisionEntityCP<T> extends IValueEntityCP<T> {
     public void setDomain(IDomain<T> domain);
 
     /***
-     * Prune values constraint can be assigned
+     * Prune domain of values can be assigned
+     * @return domain size after pruning
      */
-    public void prune();
+    public int selfPruning();
 }

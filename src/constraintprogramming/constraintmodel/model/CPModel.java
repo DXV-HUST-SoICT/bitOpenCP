@@ -4,20 +4,21 @@ import constraintprogramming.constraintmodel.core.datatype.EModelState;
 import constraintprogramming.constraintmodel.core.datatype.IValueEntityCP;
 import constraintprogramming.constraintmodel.core.domain.SatisfactionDomain;
 import constraintprogramming.constraintmodel.invariant.constraint.IConstraintCP;
+import constraintprogramming.propagationengine.IAC3Pruning;
 import constraintprogramming.propagationengine.IPropagationEngineCP;
 import constraintprogramming.searchengine.metasearchengine.IMetaSearchEngine;
-import core.IValueEntity;
 
 import java.util.HashSet;
 
-public class CPModel extends ACPModel implements ICPModel {
+public class CPModel extends ACPModel implements ICPModel, IAC3Pruning {
 
-    HashSet<IValueEntityCP> setValueEntity_;
+    HashSet<IConstraintCP> setConstraint_ = new HashSet<>();
+    HashSet<IValueEntityCP> setValueEntity_ = new HashSet<>();
     IMetaSearchEngine se;
     IPropagationEngineCP pe;
 
     void ICPModel() {
-        setValueEntity_ = new HashSet<>();
+
     }
 
     public void addValueEntity(IValueEntityCP e) {
@@ -25,7 +26,7 @@ public class CPModel extends ACPModel implements ICPModel {
             return;
         }
         setValueEntity_.add(e);
-        HashSet<IValueEntityCP> t = e.getAffectValueEntity();
+        HashSet<IValueEntityCP> t = e.getAffectingValueEntities();
         for (IValueEntityCP i : t) {
             addValueEntity(i);
         }
@@ -38,6 +39,7 @@ public class CPModel extends ACPModel implements ICPModel {
         }
         addValueEntity(c);
         c.setDomain(new SatisfactionDomain(2));
+        setConstraint_.add(c);
     }
 
     @Override
@@ -48,5 +50,10 @@ public class CPModel extends ACPModel implements ICPModel {
     @Override
     public void setPropagationEngine(IPropagationEngineCP pe) {
         this.pe = pe;
+    }
+
+    @Override
+    public HashSet<HashSet<IValueEntityCP>> getArcRelationship() {
+        return null;
     }
 }

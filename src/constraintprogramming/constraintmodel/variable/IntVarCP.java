@@ -13,12 +13,12 @@ public class IntVarCP extends AVarCP<Integer> {
     }
 
     @Override
-    public void prune() {
+    public int selfPruning() {
 
     }
 
     @Override
-    public HashSet<IValueEntityCP> getAffectValueEntity() {
+    public HashSet<IValueEntityCP> getAffectingValueEntities() {
         return new HashSet<>();
     }
 }

@@ -14,6 +14,19 @@ public class WorkloadManager extends AWorkloadManager implements IWorkloadManage
     protected ArrayList<IMetaSearchEngine> se;
 
     public WorkloadManager(ArrayList<IPropagationEngineCP> pe, ArrayList<ICPModel> cm, ArrayList<IMetaSearchEngine> se) {
+        this.pe = pe;
+        this.cm = cm;
+        this.se = se;
+        createAssociate();
+    }
+
+    @Override
+    public void run() {
+        se.get(0).run();
+    }
+
+    @Override
+    public void createAssociate() {
         this.n = Math.min(pe.size(), cm.size());
         this.n = Math.min(this.n, se.size());
 
@@ -29,10 +42,5 @@ public class WorkloadManager extends AWorkloadManager implements IWorkloadManage
             this.cm.add(cm.get(i));
             this.se.add(se.get(i));
         }
-    }
-
-    @Override
-    public void run() {
-        se.get(0).run();
     }
 }

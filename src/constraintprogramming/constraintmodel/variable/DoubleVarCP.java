@@ -3,7 +3,6 @@ package constraintprogramming.constraintmodel.variable;
 import constraintprogramming.constraintmodel.core.datatype.IValueEntityCP;
 import constraintprogramming.constraintmodel.core.domain.IDomain;
 
-import java.util.Dictionary;
 import java.util.HashSet;
 
 public class DoubleVarCP extends AVarCP<Double> {
@@ -13,12 +12,12 @@ public class DoubleVarCP extends AVarCP<Double> {
     }
 
     @Override
-    public void prune() {
+    public int selfPruning() {
 
     }
 
     @Override
-    public HashSet<IValueEntityCP> getAffectValueEntity() {
+    public HashSet<IValueEntityCP> getAffectingValueEntities() {
         return new HashSet<>();
     }
 }
