@@ -5,7 +5,6 @@ import constraintprogramming.constraintmodel.core.datatype.IValueEntityCP;
 import constraintprogramming.constraintmodel.core.domain.SatisfactionDomain;
 import constraintprogramming.constraintmodel.invariant.constraint.IConstraintCP;
 import constraintprogramming.constraintmodel.variable.IVarCP;
-import constraintprogramming.propagationengine.IAC3Pruning;
 import constraintprogramming.propagationengine.IPropagationEngineCP;
 import constraintprogramming.searchengine.metasearchengine.IMetaSearchEngine;
 
@@ -13,10 +12,11 @@ import java.util.HashSet;
 
 public class CPModel extends ACPModel implements ICPModel {
 
-    HashSet<IConstraintCP> setConstraint_ = new HashSet<>();
-    HashSet<IValueEntityCP> setValueEntity_ = new HashSet<>();
-    IMetaSearchEngine se;
-    IPropagationEngineCP pe;
+    private HashSet<IConstraintCP> setConstraint_ = new HashSet<>();
+    private HashSet<IValueEntityCP> setValueEntity_ = new HashSet<>();
+    private HashSet<IVarCP> setVar_ = new HashSet<>();
+    private IMetaSearchEngine se;
+    private IPropagationEngineCP pe;
 
     void ICPModel() {
 
@@ -27,9 +27,13 @@ public class CPModel extends ACPModel implements ICPModel {
             return;
         }
         setValueEntity_.add(e);
-        HashSet<IValueEntityCP> t = e.getAffectingValueEntities();
-        for (IValueEntityCP i : t) {
-            addValueEntity(i);
+        if (e instanceof IVarCP) {
+            setVar_.add((IVarCP) e);
+        } else {
+            HashSet<IValueEntityCP> t = e.getAffectingValueEntities();
+            for (IValueEntityCP i : t) {
+                addValueEntity(i);
+            }
         }
     }
 
@@ -55,11 +59,15 @@ public class CPModel extends ACPModel implements ICPModel {
 
     @Override
     public HashSet<IVarCP> getVariables() {
-        return null;
+        HashSet<IVarCP> res = new HashSet<>();
+        res.addAll(setVar_);
+        return res;
     }
 
     @Override
     public HashSet<IConstraintCP> getConstraints() {
-        return null;
+        HashSet<IConstraintCP> res = new HashSet<>();
+        res.addAll(setConstraint_);
+        return res;
     }
 }
