@@ -12,7 +12,7 @@ public class LargeDomainFirst implements IVariableSelector {
     @Override
     public int select(ICPModel cm, TaskStack taskStack) {
         HashSet<IVarCP> variables = cm.getVariables();
-        IVarCP var = new IntVarCP();
+        IVarCP var = null;
         for (IVarCP v : variables) {
             if ((var == null) || v.getDomainElements().size() > var.getDomainElements().size()) {
                 var = v;

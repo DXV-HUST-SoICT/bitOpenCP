@@ -29,6 +29,7 @@ public class SelectOneValue<T> implements IBranching<T> {
             Domain<T> nd = new Domain<>();
             nd.add(de.get(i));
             nb.newDomain.put(var, nd);
+            taskStack.taskStack.peek().branchQueue.add(nb);
         }
     }
 }

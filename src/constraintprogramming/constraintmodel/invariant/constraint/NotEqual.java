@@ -1,6 +1,8 @@
 package constraintprogramming.constraintmodel.invariant.constraint;
 
+import constraintprogramming.constraintmodel.constant.ConstantCP;
 import constraintprogramming.constraintmodel.core.datatype.ESatisfaction;
+import constraintprogramming.constraintmodel.core.datatype.IDecisionEntityCP;
 import constraintprogramming.constraintmodel.core.datatype.IValueEntityCP;
 import constraintprogramming.constraintmodel.core.domain.IDomain;
 import constraintprogramming.propagationengine.IAC3Pruning;
@@ -12,15 +14,19 @@ public class NotEqual extends AConstraintCP implements IConstraintCP, IAC3Prunin
 
     private IValueEntityCP x1;
     private IValueEntityCP x2;
+    HashSet<IValueEntityCP> affectingValueEntitiesSet;
 
     public NotEqual(IValueEntityCP x1, IValueEntityCP x2) {
         this.x1 = x1;
         this.x2 = x2;
+        affectingValueEntitiesSet = new HashSet<>();
+        affectingValueEntitiesSet.add(x1);
+        affectingValueEntitiesSet.add(x2);
     }
 
     @Override
     public IDomain<ESatisfaction> getDomain() {
-        return null;
+        return this.domain_;
     }
 
     @Override
@@ -30,7 +36,8 @@ public class NotEqual extends AConstraintCP implements IConstraintCP, IAC3Prunin
 
     @Override
     public boolean isAssigned() {
-        return false;
+        return ((x1 instanceof ConstantCP) || (((IDecisionEntityCP) x1).isAssigned()))
+                && ((x2 instanceof ConstantCP) || (((IDecisionEntityCP) x2).isAssigned()));
     }
 
     @Override
@@ -45,6 +52,21 @@ public class NotEqual extends AConstraintCP implements IConstraintCP, IAC3Prunin
 
     @Override
     public HashSet<IValueEntityCP> getAffectingValueEntities() {
-        return null;
+        HashSet<IValueEntityCP> res = new HashSet<>();
+        res.addAll(affectingValueEntitiesSet);
+        return res;
+    }
+
+    @Override
+    public ESatisfaction getValue() {
+        if (this.isAssigned()) {
+            if (x1.getValue() != x2.getValue()) {
+                return ESatisfaction.TRUE;
+            } else {
+                return ESatisfaction.FALSE;
+            }
+        } else {
+            return this.value;
+        }
     }
 }

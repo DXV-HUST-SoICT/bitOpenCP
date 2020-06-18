@@ -18,11 +18,6 @@ public class DoubleVarCP extends AVarCP<Double> implements IAC3Pruning {
     }
 
     @Override
-    public boolean isAssigned() {
-        return false;
-    }
-
-    @Override
     public HashSet<IValueEntityCP> getAffectingValueEntities() {
         return new HashSet<>();
     }

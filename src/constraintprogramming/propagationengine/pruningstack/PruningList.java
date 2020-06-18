@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class PruningList {
-    public HashMap<IVarCP, Domain> list;
+    public HashMap<IVarCP, Domain> list = new HashMap<>();
     public <T> void addValue(IVarCP<T> var, T val) {
         if (!list.containsKey(var)) {
             list.put(var, new Domain());

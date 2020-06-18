@@ -27,4 +27,13 @@ public class Solution implements ISolution {
     public <T> T getSolution(IVarCP<T> x) {
         return (T) solution.get(x);
     }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        for (IVarCP var : solution.keySet()) {
+            sb.append(var + " = " + solution.get(var) + "\n");
+        }
+        return sb.toString();
+    }
 }

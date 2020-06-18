@@ -46,7 +46,10 @@ public class CSPSearchEngine extends ASearchEngine implements ISearchEngine {
             while (true) {
                 Branch branch = branchSelector.selectBranch(cm, taskStack);
                 if (branch == null) {
-                    pe.revertPruning();
+//                    pe.revertPruning();
+                    for (IVarCP var : taskStack.taskStack.peek().oldDomain.keySet()) {
+                        var.setDomain(taskStack.taskStack.peek().oldDomain.get(var));
+                    }
                     taskStack.taskStack.pop();
                     break;
                 }
@@ -55,34 +58,39 @@ public class CSPSearchEngine extends ASearchEngine implements ISearchEngine {
                 }
                 pe.propagatePruning();
 
-                boolean hasSolution = true;
+                boolean isAllAssigned = true;
                 for (IVarCP var : cm.getVariables()) {
                     if (var.getDomain().size() == 0) {
                         pe.revertPruning();
                         continue;
                     }
                     if (var.getDomain().size() != 1) {
-                        hasSolution = false;
+                        isAllAssigned = false;
                     }
                 }
 
-                if (hasSolution) {
+                if (isAllAssigned) {
+                    System.out.println("Checkpoint");
+                    for (IVarCP var : cm.getVariables()) {
+                        System.out.println(var + " = " + var.getValue());
+                    }
+                    boolean satisfied = true;
                     for (IConstraintCP cons : cm.getConstraints()) {
                         if ((!cons.isAssigned()) || (cons.getValue() != ESatisfaction.TRUE)) {
-                            hasSolution = false;
+                            satisfied = false;
                             break;
                         }
                     }
-                }
-
-                if (hasSolution) {
-                    Solution sol = new Solution();
-                    for (IVarCP var : cm.getVariables()) {
-                        sol.assign(var, var.getValue());
+                    if (satisfied) {
+                        Solution sol = new Solution();
+                        for (IVarCP var : cm.getVariables()) {
+                            sol.assign(var, var.getValue());
+                        }
+                        solution.add(sol);
+                        pe.revertPruning();
+                        break;
                     }
-                    solution.add(sol);
                     pe.revertPruning();
-                    break;
                 } else {
                     variableSelector.select(cm, taskStack);
                     branching.branch(cm, taskStack);

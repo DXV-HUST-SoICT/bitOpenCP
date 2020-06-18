@@ -6,6 +6,7 @@ package core;
 public abstract class AEntity<T> implements IEntity<T> {
 
     T id;
+    String name;
 
     @Override
     public T getId() {
@@ -15,5 +16,20 @@ public abstract class AEntity<T> implements IEntity<T> {
     @Override
     public void setId(T id) {
         this.id = id;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

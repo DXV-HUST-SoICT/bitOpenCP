@@ -22,13 +22,18 @@ public class CPModel extends ACPModel implements ICPModel {
 
     }
 
+    @Override
+    public void addVariable(IVarCP var) {
+        setVar_.add(var);
+    }
+
     public void addValueEntity(IValueEntityCP e) {
         if (setValueEntity_.contains(e)) {
             return;
         }
         setValueEntity_.add(e);
         if (e instanceof IVarCP) {
-            setVar_.add((IVarCP) e);
+            addVariable((IVarCP) e);
         } else {
             HashSet<IValueEntityCP> t = e.getAffectingValueEntities();
             for (IValueEntityCP i : t) {

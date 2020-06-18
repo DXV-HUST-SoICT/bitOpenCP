@@ -18,10 +18,6 @@ public class IntVarCP extends AVarCP<Integer> implements IAC3Pruning {
         this.domain_ = domain;
     }
 
-    @Override
-    public boolean isAssigned() {
-        return false;
-    }
 
     @Override
     public HashSet<IValueEntityCP> getAffectingValueEntities() {

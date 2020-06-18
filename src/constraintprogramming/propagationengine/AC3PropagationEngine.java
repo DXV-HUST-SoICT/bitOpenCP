@@ -11,11 +11,11 @@ public class AC3PropagationEngine extends APropagationEngineCP implements IPropa
     private IMetaSearchEngine se;
     private ICPModel cm;
 
-    PruningStack pruningStack;
+    PruningStack pruningStack = new PruningStack();
 
     @Override
     public void propagatePruning() {
-
+        pruningStack.stack.add(new PruningList());
     }
 
     @Override

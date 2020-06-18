@@ -17,4 +17,8 @@ public interface IEntity<T> {
      * @return object's id
      */
     public T getId();
+
+    public void setName(String name);
+
+    public String getName();
 }

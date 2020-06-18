@@ -1,6 +1,7 @@
 package constraintprogramming.constraintmodel.model;
 
 import constraintprogramming.constraintmodel.core.datatype.EModelState;
+import constraintprogramming.constraintmodel.core.datatype.IValueEntityCP;
 import constraintprogramming.constraintmodel.invariant.constraint.IConstraintCP;
 import constraintprogramming.constraintmodel.variable.IVarCP;
 import constraintprogramming.propagationengine.IPropagationEngineCP;
@@ -27,6 +28,9 @@ public interface ICPModel {
      * add new constraint (and all related ValueEntity, of course) to model
      */
     public void post(IConstraintCP c);
+
+    public void addValueEntity(IValueEntityCP e);
+    public void addVariable(IVarCP var);
 
     /***
      * get model's current state (i.e. OPEN or CLOSE)

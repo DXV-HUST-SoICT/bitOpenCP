@@ -10,9 +10,16 @@ import java.util.ArrayList;
 public class WorkloadManager extends AWorkloadManager implements IWorkloadManager {
 
     protected int n;
-    protected ArrayList<IPropagationEngineCP> pe;
-    protected ArrayList<ICPModel> cm;
-    protected ArrayList<IMetaSearchEngine> se;
+    protected ArrayList<IPropagationEngineCP> pe = new ArrayList<>();
+    protected ArrayList<ICPModel> cm = new ArrayList<>();
+    protected ArrayList<IMetaSearchEngine> se = new ArrayList<>();
+
+    public WorkloadManager(IPropagationEngineCP pe, ICPModel cm, IMetaSearchEngine se) {
+        this.pe.add(pe);
+        this.cm.add(cm);
+        this.se.add(se);
+        createAssociate();
+    }
 
     public WorkloadManager(ArrayList<IPropagationEngineCP> pe, ArrayList<ICPModel> cm, ArrayList<IMetaSearchEngine> se) {
         this.pe = pe;
