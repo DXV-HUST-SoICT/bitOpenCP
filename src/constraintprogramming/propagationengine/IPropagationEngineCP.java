@@ -17,4 +17,6 @@ public interface IPropagationEngineCP {
      * @param cm
      */
     public void setConstraintModel(ICPModel cm);
+
+    public void revertPruning();
 }

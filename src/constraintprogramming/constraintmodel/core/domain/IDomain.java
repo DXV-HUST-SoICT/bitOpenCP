@@ -24,7 +24,7 @@ public interface IDomain<T> {
      *
      * @return all of values of domain
      */
-    public Collection<T> getDomain();
+    public Collection<T> getDomainElements();
 
     /***
      *

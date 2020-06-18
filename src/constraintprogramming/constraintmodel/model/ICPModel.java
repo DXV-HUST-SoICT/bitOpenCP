@@ -2,8 +2,11 @@ package constraintprogramming.constraintmodel.model;
 
 import constraintprogramming.constraintmodel.core.datatype.EModelState;
 import constraintprogramming.constraintmodel.invariant.constraint.IConstraintCP;
+import constraintprogramming.constraintmodel.variable.IVarCP;
 import constraintprogramming.propagationengine.IPropagationEngineCP;
 import constraintprogramming.searchengine.metasearchengine.IMetaSearchEngine;
+
+import java.util.HashSet;
 
 /***
  * contains all of constraints that must be satisfied
@@ -42,4 +45,7 @@ public interface ICPModel {
      * @param pe
      */
     public void setPropagationEngine(IPropagationEngineCP pe);
+
+    public HashSet<IVarCP> getVariables();
+    public HashSet<IConstraintCP> getConstraints();
 }

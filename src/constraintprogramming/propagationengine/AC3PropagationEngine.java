@@ -18,4 +18,9 @@ public class AC3PropagationEngine extends APropagationEngineCP implements IPropa
     public void setConstraintModel(ICPModel cm) {
 
     }
+
+    @Override
+    public void revertPruning() {
+
+    }
 }

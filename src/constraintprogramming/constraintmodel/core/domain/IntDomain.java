@@ -4,7 +4,7 @@ import utils.algorithms.BinarySearch;
 
 import java.util.*;
 
-public class IntDomain extends ADomain<Integer> implements IDomain<Integer> {
+public class IntDomain extends Domain<Integer> {
 
     private HashSet<Integer> domain_ = new HashSet<>();
 
@@ -30,7 +30,7 @@ public class IntDomain extends ADomain<Integer> implements IDomain<Integer> {
     }
 
     @Override
-    public Collection<Integer> getDomain() {
+    public Collection<Integer> getDomainElements() {
         return domain_;
     }
 
@@ -65,7 +65,7 @@ public class IntDomain extends ADomain<Integer> implements IDomain<Integer> {
 
     @Override
     public void add(IDomain<Integer> domain) {
-        domain_.addAll(domain.getDomain());
+        domain_.addAll(domain.getDomainElements());
     }
 
     @Override
@@ -75,6 +75,6 @@ public class IntDomain extends ADomain<Integer> implements IDomain<Integer> {
 
     @Override
     public void remove(IDomain<Integer> domain) {
-        domain_.removeAll(domain.getDomain());
+        domain_.removeAll(domain.getDomainElements());
     }
 }

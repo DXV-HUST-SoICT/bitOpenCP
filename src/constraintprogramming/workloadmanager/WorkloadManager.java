@@ -3,6 +3,7 @@ package constraintprogramming.workloadmanager;
 import constraintprogramming.constraintmodel.model.ICPModel;
 import constraintprogramming.propagationengine.IPropagationEngineCP;
 import constraintprogramming.searchengine.metasearchengine.IMetaSearchEngine;
+import constraintprogramming.searchengine.solution.Solution;
 
 import java.util.ArrayList;
 
@@ -42,5 +43,10 @@ public class WorkloadManager extends AWorkloadManager implements IWorkloadManage
             this.cm.add(cm.get(i));
             this.se.add(se.get(i));
         }
+    }
+
+    @Override
+    public ArrayList<Solution> getSolution() {
+        return se.get(0).getSolution();
     }
 }

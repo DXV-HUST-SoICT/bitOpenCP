@@ -20,13 +20,12 @@ public interface IDecisionEntityCP<T> extends IValueEntityCP<T> {
      * get entity's domain of value
      * @return
      */
-    public Collection<T> getDomain();
+    public Collection<T> getDomainElements();
+
+    public IDomain<T> getDomain();
 
     public void setDomain(IDomain<T> domain);
 
-    /***
-     * Prune domain of values can be assigned
-     * @return domain size after pruning
-     */
-    public int selfPruning();
+    public boolean isAssigned();
+    public T getValue();
 }

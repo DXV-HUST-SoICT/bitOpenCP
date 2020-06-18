@@ -21,7 +21,7 @@ public abstract class ADecisionEntityCP<T> extends AValueEntityCP<T>
     }
 
     @Override
-    public Collection<T> getDomain() {
-        return domain_.getDomain();
+    public Collection<T> getDomainElements() {
+        return domain_.getDomainElements();
     }
 }

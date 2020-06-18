@@ -2,6 +2,9 @@ package constraintprogramming.searchengine.metasearchengine;
 
 import constraintprogramming.constraintmodel.model.ICPModel;
 import constraintprogramming.propagationengine.IPropagationEngineCP;
+import constraintprogramming.searchengine.solution.Solution;
+
+import java.util.ArrayList;
 
 public interface IMetaSearchEngine {
     /***
@@ -21,4 +24,8 @@ public interface IMetaSearchEngine {
      */
     public void run();
 
+    /***
+     * Return solution
+     */
+    public ArrayList<Solution> getSolution();
 }

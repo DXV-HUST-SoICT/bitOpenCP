@@ -29,7 +29,7 @@ public class SatisfactionDomain extends ADomain<ESatisfaction> implements IDomai
     }
 
     @Override
-    public Collection<ESatisfaction> getDomain() {
+    public Collection<ESatisfaction> getDomainElements() {
         return domain_;
     }
 
@@ -64,7 +64,7 @@ public class SatisfactionDomain extends ADomain<ESatisfaction> implements IDomai
 
     @Override
     public void add(IDomain<ESatisfaction> domain) {
-        domain_.addAll(domain.getDomain());
+        domain_.addAll(domain.getDomainElements());
     }
 
     @Override
@@ -74,6 +74,6 @@ public class SatisfactionDomain extends ADomain<ESatisfaction> implements IDomai
 
     @Override
     public void remove(IDomain<ESatisfaction> domain) {
-        domain_.removeAll(domain.getDomain());
+        domain_.removeAll(domain.getDomainElements());
     }
 }

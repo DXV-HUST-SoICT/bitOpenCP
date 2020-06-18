@@ -21,8 +21,8 @@ public class FunctionAdd extends AFunctionCP
         this.e1 = e1;
         this.e2 = e2;
         this.value = null;
-        ArrayList<Integer> d1 = (ArrayList) e1.getDomain();
-        ArrayList<Integer> d2 = (ArrayList) e2.getDomain();
+        ArrayList<Integer> d1 = (ArrayList) e1.getDomainElements();
+        ArrayList<Integer> d2 = (ArrayList) e2.getDomainElements();
         HashSet<Integer> domain = new HashSet<>();
         for (int i = 0; i < d1.size(); i++) {
             for (int j = 0; j < d2.size(); j++) {
@@ -33,23 +33,18 @@ public class FunctionAdd extends AFunctionCP
     }
 
     @Override
+    public IDomain getDomain() {
+        return null;
+    }
+
+    @Override
     public void setDomain(IDomain domain) {
 
     }
 
     @Override
-    public int selfPruning() {
-
-    }
-
-    @Override
-    public HashSet<HashSet<IValueEntityCP>> getArcRelationship() {
-        HashSet<HashSet<IValueEntityCP>> arcRelationship = new HashSet<>();
-        HashSet<IValueEntityCP> a = new HashSet<>();
-        a.add(e1);
-        a.add(e2);
-        arcRelationship.add(a);
-        return arcRelationship;
+    public boolean isAssigned() {
+        return false;
     }
 
     @Override
@@ -58,5 +53,15 @@ public class FunctionAdd extends AFunctionCP
         affectVE.add(e1);
         affectVE.add(e2);
         return affectVE;
+    }
+
+    @Override
+    public IDomain bottumUpPruning() {
+        return null;
+    }
+
+    @Override
+    public IDomain topDownPruning() {
+        return null;
     }
 }

@@ -4,13 +4,14 @@ import constraintprogramming.constraintmodel.core.datatype.EModelState;
 import constraintprogramming.constraintmodel.core.datatype.IValueEntityCP;
 import constraintprogramming.constraintmodel.core.domain.SatisfactionDomain;
 import constraintprogramming.constraintmodel.invariant.constraint.IConstraintCP;
+import constraintprogramming.constraintmodel.variable.IVarCP;
 import constraintprogramming.propagationengine.IAC3Pruning;
 import constraintprogramming.propagationengine.IPropagationEngineCP;
 import constraintprogramming.searchengine.metasearchengine.IMetaSearchEngine;
 
 import java.util.HashSet;
 
-public class CPModel extends ACPModel implements ICPModel, IAC3Pruning {
+public class CPModel extends ACPModel implements ICPModel {
 
     HashSet<IConstraintCP> setConstraint_ = new HashSet<>();
     HashSet<IValueEntityCP> setValueEntity_ = new HashSet<>();
@@ -53,7 +54,12 @@ public class CPModel extends ACPModel implements ICPModel, IAC3Pruning {
     }
 
     @Override
-    public HashSet<HashSet<IValueEntityCP>> getArcRelationship() {
+    public HashSet<IVarCP> getVariables() {
+        return null;
+    }
+
+    @Override
+    public HashSet<IConstraintCP> getConstraints() {
         return null;
     }
 }
