@@ -27,13 +27,11 @@ public class FunctionAdd extends AFunctionCP<Integer>
         if (e1 instanceof IDecisionEntityCP) {
             d1.addAll(((IDecisionEntityCP) e1).getDomainElements());
         } else {
-            d1 = new ArrayList<>();
             d1.add((Integer) e1.getValue());
         }
         if (e2 instanceof IDecisionEntityCP) {
             d2.addAll(((IDecisionEntityCP) e2).getDomainElements());
         } else {
-            d2 = new ArrayList<>();
             d2.add((Integer) e2.getValue());
         }
         HashSet<Integer> domain = new HashSet<>();

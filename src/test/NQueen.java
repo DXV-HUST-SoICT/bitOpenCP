@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class NQueen {
     public static void main(String[] args) {
-        int N = 5;
+        int N = 7;
         ICPModel cm = new CPModel();
         IVarCP[] x = new IVarCP[N];
         for (int i = 0; i < N; i++) {

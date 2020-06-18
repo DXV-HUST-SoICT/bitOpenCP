@@ -70,10 +70,10 @@ public class CSPSearchEngine extends ASearchEngine implements ISearchEngine {
                 }
 
                 if (isAllAssigned) {
-                    System.out.println("Checkpoint");
-                    for (IVarCP var : cm.getVariables()) {
-                        System.out.println(var + " = " + var.getValue());
-                    }
+//                    System.out.println("Checkpoint");
+//                    for (IVarCP var : cm.getVariables()) {
+//                        System.out.println(var + " = " + var.getValue());
+//                    }
                     boolean satisfied = true;
                     for (IConstraintCP cons : cm.getConstraints()) {
                         if ((!cons.isAssigned()) || (cons.getValue() != ESatisfaction.TRUE)) {

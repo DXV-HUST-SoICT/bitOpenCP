@@ -4,10 +4,12 @@ import constraintprogramming.constraintmodel.constant.ConstantCP;
 import constraintprogramming.constraintmodel.core.datatype.ESatisfaction;
 import constraintprogramming.constraintmodel.core.datatype.IDecisionEntityCP;
 import constraintprogramming.constraintmodel.core.datatype.IValueEntityCP;
+import constraintprogramming.constraintmodel.core.domain.Domain;
 import constraintprogramming.constraintmodel.core.domain.IDomain;
 import constraintprogramming.propagationengine.IAC3Pruning;
 import core.IValueEntity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class NotEqual extends AConstraintCP implements IConstraintCP, IAC3Pruning {
@@ -22,6 +24,34 @@ public class NotEqual extends AConstraintCP implements IConstraintCP, IAC3Prunin
         affectingValueEntitiesSet = new HashSet<>();
         affectingValueEntitiesSet.add(x1);
         affectingValueEntitiesSet.add(x2);
+        this.domain_ = new Domain<ESatisfaction>();
+        ArrayList<Integer> d1 = new ArrayList<>();
+        ArrayList<Integer> d2 = new ArrayList<>();
+        if (x1 instanceof IDecisionEntityCP) {
+            d1.addAll(((IDecisionEntityCP) x1).getDomainElements());
+        } else {
+            d1.add((Integer) x1.getValue());
+        }
+        if (x2 instanceof IDecisionEntityCP) {
+            d2.addAll(((IDecisionEntityCP) x2).getDomainElements());
+        } else {
+            d2.add((Integer) x2.getValue());
+        }
+        for (int i = 0; i < d1.size(); i++) {
+            for (int j = 0; j < d2.size(); j++) {
+                if (d1.get(i) == d2.get(j)) {
+                    this.domain_.add(ESatisfaction.TRUE);
+                } else {
+                    this.domain_.add(ESatisfaction.FALSE);
+                }
+                if (this.domain_.size() == 2) {
+                    break;
+                }
+            }
+            if (this.domain_.size() == 2) {
+                break;
+            }
+        }
     }
 
     @Override
